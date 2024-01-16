@@ -134,6 +134,17 @@ const API_DOCS: Record<
     description: 'Next.js Metadata configurations',
     link: 'https://nextjs.org/docs/app/api-reference/file-conventions/metadata',
   },
+  maxDuration: {
+    description:
+      'By default, Next.js does not limit the execution of server-side logic (rendering a page or handling an API). Deployment platforms can use `maxDuration` from the Next.js build output to add specific execution limits',
+    link: 'https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#maxduration',
+    isValid: (value: string) => {
+      return Number(value.replace(/_/g, '')) > 0
+    },
+    getHint: (value: any) => {
+      return `Limits execution time to \`${value}\` seconds.`
+    },
+  },
 }
 
 function visitEntryConfig(
